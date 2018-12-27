@@ -22,12 +22,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link IngredientsFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link IngredientsFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Created by Luigi Ciuffardi on 9/30/2017.
+ * Last updated by Luigi Ciuffardi on 12/27/2018.
  */
 public class IngredientsFragment extends Fragment implements View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
@@ -45,14 +41,6 @@ public class IngredientsFragment extends Fragment implements View.OnClickListene
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment IngredientsFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static IngredientsFragment newInstance(String param1, String param2) {
         IngredientsFragment fragment = new IngredientsFragment();
@@ -118,7 +106,7 @@ public class IngredientsFragment extends Fragment implements View.OnClickListene
                         date = restructureDate[2] + "-" + restructureDate[0] + "-" + restructureDate[1] + " " + "00:00:00";
                         Date expiration = df.parse(date);
 
-
+                        //Sets background color of ingredient based on how close to expiration it is
                         if (today.after(expiration))
                             itemView.setBackgroundColor(Color.RED);
                         else if (warning.getTime().after(expiration))
@@ -152,13 +140,6 @@ public class IngredientsFragment extends Fragment implements View.OnClickListene
 
 
         return view;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(String title) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(title);
-        }
     }
 
     @Override

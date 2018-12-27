@@ -5,9 +5,6 @@ package com.example.lciuffardi.cookingcompanion;
  */
 
 import android.app.IntentService;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.widget.Toast;
 import java.util.Properties;
@@ -20,6 +17,10 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import android.os.Handler;
 
+/**
+ * Created by Luigi Ciuffardi on 10/2/2017.
+ * Last updated by Luigi Ciuffardi on 12/27/2018.
+ */
 public class EmailService extends IntentService {
     public static final String EMAIL_SOURCE = "cookingcompanionuser@gmail.com";
     public static final String PASSWORD = "nlkdxjocfriqyevj";
@@ -108,14 +109,9 @@ public class EmailService extends IntentService {
             Transport.send(copyMessage);
             sent = true;
 
-
         } catch (MessagingException e) {
             e.printStackTrace();
         }
     }
-
-
-
-
 
 }

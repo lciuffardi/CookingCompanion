@@ -8,11 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.TextView;
 
 /**
  * Created by Luigi Ciuffardi on 9/30/2017.
+ * Last updated by Luigi Ciuffardi on 12/27/2018.
  */
 
 public class IngredientDetail extends AppCompatActivity {
@@ -53,6 +53,9 @@ public class IngredientDetail extends AppCompatActivity {
         }
     }
 
+    /** showViewIngredientsDetails - Displays Ingredient data to user.
+     *
+     */
     public void showViewIngredientsDetails(){
         setContentView(R.layout.ingredients_data);
         Bundle extras = getIntent().getExtras();
@@ -77,6 +80,9 @@ public class IngredientDetail extends AppCompatActivity {
         }
     }
 
+    /** deleteIngredient - Removes Ingredient from Ingredient Database
+     *
+     */
     private void deleteIngredient() {
         IngredientsDatabaseManager dbMgr = new IngredientsDatabaseManager(this);
         Ingredient ingredient = dbMgr.getIngredient(ingredientID);

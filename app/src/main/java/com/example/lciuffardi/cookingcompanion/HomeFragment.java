@@ -32,12 +32,8 @@ import java.util.Map;
 import java.util.Random;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link HomeFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Created by Luigi Ciuffardi on 9/30/2017.
+ * Last updated by Luigi Ciuffardi on 12/27/2018.
  */
 public class HomeFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
@@ -59,24 +55,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +73,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             mListener.onFragmentInteraction("Home");
         }
 
+        /*This section is responsible for changing the recipe of the day or setting a recipe of the
+        day if this is the first time the application has been installed.*/
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         SharedPreferences.Editor editor = preferences.edit();
         Date today = Calendar.getInstance().getTime();
@@ -123,8 +103,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         }
         preferences.getInt("RandomRecipe", 0);
         randomRecipe(preferences.getInt("RandomSelection", 0), view);
-
-
 
         ListView listView = (ListView) view.findViewById(
                 R.id.expiring_ingredients_listView);
@@ -174,7 +152,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
         };
 
-
         listView.setAdapter(adapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         listView.setOnItemClickListener(
@@ -191,13 +168,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 });
 
         return view;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(String title) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(title);
-        }
     }
 
     @Override
@@ -217,21 +187,36 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(String title);
     }
 
+    public void onClick(final View v) { //check for what button is pressed
+        Intent intent = new Intent(
+                getActivity().getApplicationContext(),
+                RecipeDetails.class);
+        switch (v.getId()) {
+            case R.id.dish_imageView:
+
+                intent.putExtra("url", url);
+                intent.putExtra("name", name);
+                startActivity(intent);
+                break;
+            case R.id.dish_name_textView:
+                intent.putExtra("url", url);
+                intent.putExtra("name", name);
+                startActivity(intent);
+                break;
+        }
+    }
+
+    /** randomRecipe - Retrieves a random recipe for the Recipe of the Day using a random number
+     *                 generator.
+     *
+     * @param num
+     * @param view
+     */
     private void randomRecipe(int num, View view) {
 
         TextView recipeName = (TextView) view.findViewById(R.id.dish_name_textView);
@@ -282,22 +267,4 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         recipeImage.setOnClickListener(this);
     }
 
-    public void onClick(final View v) { //check for what button is pressed
-        Intent intent = new Intent(
-                getActivity().getApplicationContext(),
-                RecipeDetails.class);
-        switch (v.getId()) {
-            case R.id.dish_imageView:
-
-                intent.putExtra("url", url);
-                intent.putExtra("name", name);
-                startActivity(intent);
-                break;
-            case R.id.dish_name_textView:
-                intent.putExtra("url", url);
-                intent.putExtra("name", name);
-                startActivity(intent);
-                break;
-        }
-    }
 }

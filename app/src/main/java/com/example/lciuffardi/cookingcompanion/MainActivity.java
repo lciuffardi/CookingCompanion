@@ -2,11 +2,8 @@ package com.example.lciuffardi.cookingcompanion;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +11,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+
+/**
+ * Created by Luigi Ciuffardi on 10/1/2017.
+ * Last updated by Luigi Ciuffardi on 12/27/2018.
+ */
 
 public class MainActivity extends AppCompatActivity
         implements HomeFragment.OnFragmentInteractionListener,
@@ -93,8 +95,4 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setTitle(title);
     }
 
-    public void showProgress(){
-        ProgressDialog progress = ProgressDialog.show(MainActivity.this, "Please wait...",
-                "Sending Email");
-    }
 }

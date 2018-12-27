@@ -17,6 +17,7 @@ import java.util.Locale;
 
 /**
  * Created by Luigi Ciuffardi on 9/30/2017.
+ * Last updated by Luigi Ciuffardi on 12/27/2018.
  */
 
 public class AddIngredientsActivity extends AppCompatActivity implements View.OnClickListener{
@@ -35,7 +36,6 @@ public class AddIngredientsActivity extends AppCompatActivity implements View.On
         expirationEntry.requestFocus();
 
         setDateTimeField();
-
 
     }
 
@@ -59,6 +59,9 @@ public class AddIngredientsActivity extends AppCompatActivity implements View.On
         }
     }
 
+    /** addIngredient - Collects entered user data and creates a new ingredient in the database
+     *
+     */
     public void addIngredient() {
         IngredientsDatabaseManager ingDbMgr = new IngredientsDatabaseManager(this);
         String name = ((TextView) findViewById(
@@ -77,11 +80,17 @@ public class AddIngredientsActivity extends AppCompatActivity implements View.On
         finish();
     }
 
+    /** showIngredientInputDataLayout - Shows the layout to enter Ingredient Data.
+     *
+     */
     public void showIngredientInputDataLayout() {
         setContentView(R.layout.ingredients_input_data);
 
     }
 
+    /** setDateTimeField - Sets expiration date for Ingredient
+     *
+     */
     private void setDateTimeField() {
         expirationEntry.setOnClickListener(this);
 

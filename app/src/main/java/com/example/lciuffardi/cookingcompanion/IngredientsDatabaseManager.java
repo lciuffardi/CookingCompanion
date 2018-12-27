@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * Created by Luigi Ciuffardi on 9/30/2017.
+ * Last updated by Luigi Ciuffardi on 12/27/2018.
  */
 
 public class IngredientsDatabaseManager extends SQLiteOpenHelper{
@@ -82,25 +83,6 @@ public class IngredientsDatabaseManager extends SQLiteOpenHelper{
             return ingredient;
         }
         return null;
-    }
-
-    public List<Ingredient> getAllIngredients() {
-        List<Ingredient> ingredients = new ArrayList<Ingredient>();
-        String selectQuery = "SELECT * FROM " + TABLE_NAME;
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        while(cursor.moveToNext()){
-            Ingredient ingredient = new Ingredient();
-            ingredient.setId(Integer.parseInt(cursor.getString(0)));
-            ingredient.setName(cursor.getString(1));
-            ingredient.setQuantityNumber(cursor.getString(2));
-            ingredient.setQuantityUnitOfMeasurement(cursor.getString(3));
-            ingredient.setExpiration(cursor.getString(4));
-            ingredient.setSpecialNotes(cursor.getString(5));
-            ingredients.add(ingredient);
-        }
-        return ingredients;
     }
 
     public Cursor getIngredientCursor(SQLiteDatabase db) {

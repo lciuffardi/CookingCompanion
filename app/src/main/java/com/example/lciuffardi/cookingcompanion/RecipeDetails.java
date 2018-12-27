@@ -1,22 +1,23 @@
 package com.example.lciuffardi.cookingcompanion;
 
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+/**
+ * Created by Luigi Ciuffardi on 10/1/2017.
+ * Last updated by Luigi Ciuffardi on 12/27/2018.
+ */
 
 public class RecipeDetails extends AppCompatActivity {
     private String name = null;
     private String url = null;
-
     private WebView webView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

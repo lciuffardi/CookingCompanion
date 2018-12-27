@@ -15,6 +15,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+/**
+ * Created by Luigi Ciuffardi on 10/1/2017.
+ * Last updated by Luigi Ciuffardi on 12/27/2018.
+ */
+
 public class ModifyIngredientData extends AppCompatActivity implements View.OnClickListener{
     long ingredientID;
     private EditText expirationEntry;
@@ -71,6 +76,16 @@ public class ModifyIngredientData extends AppCompatActivity implements View.OnCl
         return true;
     }
 
+    @Override
+    public void onClick(View view) {
+        if(view == expirationEntry) {
+            datePicker.show();
+        }
+    }
+
+    /** modifyIngredient - Obtains entered data and updates ingredients data in database.
+     *
+     */
     private void modifyIngredient() {
         IngredientsDatabaseManager dbMgr = new IngredientsDatabaseManager(this);
         String name = ((TextView) findViewById(
@@ -90,6 +105,9 @@ public class ModifyIngredientData extends AppCompatActivity implements View.OnCl
         finish();
     }
 
+    /** setDateTimeField - Sets expiration date for ingredient.
+     *
+     */
     private void setDateTimeField() {
         expirationEntry.setOnClickListener(this);
 
@@ -103,15 +121,5 @@ public class ModifyIngredientData extends AppCompatActivity implements View.OnCl
             }
 
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
-
     }
-
-    @Override
-    public void onClick(View view) {
-        if(view == expirationEntry) {
-            datePicker.show();
-        }
-    }
-
-
 }

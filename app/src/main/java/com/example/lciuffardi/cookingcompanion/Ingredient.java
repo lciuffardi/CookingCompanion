@@ -2,6 +2,7 @@ package com.example.lciuffardi.cookingcompanion;
 
 /**
  * Created by Luigi Ciuffardi on 9/30/2017.
+ * Last updated by Luigi Ciuffardi on 12/27/2018.
  */
 
 public class Ingredient {
@@ -11,10 +12,6 @@ public class Ingredient {
     private String quantityUnitOfMeasurement;
     private String expiration;
     private String specialNotes;
-
-    public Ingredient() {
-
-    }
 
     public Ingredient(String name, String quantityNumber, String quantityUnitOfMeasurement
             , String expiration, String specialNotes) {
@@ -45,31 +42,16 @@ public class Ingredient {
         return quantityNumber;
     }
 
-    public void setQuantityNumber(String quantityNumber) {
-        this.quantityNumber = quantityNumber;
-    }
-
     public String getQuantityUnitOfMeasurement() {
         return quantityUnitOfMeasurement;
-    }
-
-    public void setQuantityUnitOfMeasurement(String quantityUnitOfMeasurement) {
-        this.quantityUnitOfMeasurement = quantityUnitOfMeasurement;
     }
 
     public String getExpiration() {
         return expiration;
     }
 
-    public void setExpiration(String expiration) {
-        this.expiration = expiration;
-    }
-
     public String getSpecialNotes() {
         return specialNotes;
     }
 
-    public void setSpecialNotes(String specialNotes) {
-        this.specialNotes = specialNotes;
-    }
 }

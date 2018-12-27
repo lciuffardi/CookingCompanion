@@ -24,6 +24,7 @@ import java.util.Random;
 
 /**
  * Created by Luigi Ciuffardi on 10/1/2017.
+ * Last updated by Luigi Ciuffardi on 12/27/2018.
  */
 
 public class RecipesSearchActivity extends AppCompatActivity implements View.OnClickListener{
@@ -50,6 +51,10 @@ public class RecipesSearchActivity extends AppCompatActivity implements View.OnC
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.recipe_layout_menu, menu);
         return true;
+    }
+
+    @Override
+    public void onClick(View view) {
     }
 
     @Override
@@ -93,24 +98,35 @@ public class RecipesSearchActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.recipe_list);
 
         this.listView = (ListView) findViewById(R.id.recipes_listView);
-        findRecipeList(selection);
+        recipeMap = populateRecipeMap(findRecipeList(selection));
+        showRecipes(recipeMap);
 
     }
 
-    private void findRecipeList(String selection){
+    /** findRecipeList - Finds and loads the recipes for the category selected by the user into
+     *                   a JSONArray.
+     *
+     * @param selection
+     */
+    private JSONArray findRecipeList(String selection){
         JSONObject recipesJSON = null;
         JSONArray listArr = null;
         try {
             recipesJSON = new JSONObject(JSONLoader.loadRecipesJSON(getApplicationContext()));
             listArr = recipesJSON.optJSONArray(selection);
-            recipeMap = populateList(listArr);
-            showRecipes(recipeMap);
         } catch(JSONException e){
             e.printStackTrace();
         }
+        return listArr;
     }
 
-    protected static Map<String, String> populateList(JSONArray listArr){
+    /** populateRecipeMap - Populates a map containing recipe names their corresponding URLs for the
+     *                      category selected by the user.
+     *
+     * @param listArr
+     * @return recipeMap
+     */
+    protected static Map<String, String> populateRecipeMap(JSONArray listArr){
         Map<String, String> recipeMap = new HashMap<>();
         try {
             for(int i = 0; i < listArr.length(); i++){
@@ -123,6 +139,10 @@ public class RecipesSearchActivity extends AppCompatActivity implements View.OnC
         return recipeMap;
     }
 
+    /** showRecipes - Shows the recipes for a category in a list when selected by user.
+     *
+     * @param recipeMap
+     */
     private void showRecipes(final Map<String, String> recipeMap) {
         List<String> recipeList = new ArrayList<>(recipeMap.keySet());
 
@@ -137,6 +157,12 @@ public class RecipesSearchActivity extends AppCompatActivity implements View.OnC
             }
         });
     }
+
+    /** randomRecipe - Surprise Me functionality; Selects a random recipe using random number
+     *                  generator.
+     *
+     * @param recipeMap
+     */
     private void randomRecipe(final Map<String, String> recipeMap){
         List<String> recipeList = new ArrayList<>(recipeMap.keySet());
         Random r = new Random();
@@ -146,17 +172,18 @@ public class RecipesSearchActivity extends AppCompatActivity implements View.OnC
         openRecipe(o);
     }
 
-    private void openRecipe(Object o){
-        String url = recipeMap.get(o);
+    /** openRecipe - Opens the selected recipe in WebView Activity.
+     *
+     * @param recipeObj
+     */
+    private void openRecipe(Object recipeObj){
+        String url = recipeMap.get(recipeObj);
 
         Intent intent = new Intent(
                 getApplicationContext(),
                 RecipeDetails.class);
         intent.putExtra("url", url);
-        intent.putExtra("name", o.toString());
+        intent.putExtra("name", recipeObj.toString());
         startActivity(intent);
-    }
-    @Override
-    public void onClick(View view) {
     }
 }
