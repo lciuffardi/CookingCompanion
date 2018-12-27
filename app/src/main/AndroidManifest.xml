@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.lciuffardi.cookingcompanion">
+
+    <!-- To access Google+ APIs: -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AddIngredientsActivity"
+            android:label="Add Ingredient"></activity>
+        <activity
+            android:name=".IngredientDetail"
+            android:label="View Ingredient"></activity>
+        <activity
+            android:name=".ModifyIngredientData"
+            android:label="Modify Ingredient"></activity>
+        <activity
+            android:name=".RecipesSearchActivity"
+            android:label="Search Recipes"></activity>
+        <service
+            android:name=".EmailService"
+            android:exported="true" />
+
+        <activity android:name=".RecipeDetails"></activity>
+    </application>
+
+</manifest>

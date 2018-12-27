@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#f6c372"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ingredient_photo"
+        android:layout_marginTop="25dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Space
+                android:layout_width="15dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/ingredient_info_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Info"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/ingredient_name_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="      Name"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="30dp"
+                android:layout_height="wrap_content" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/ingredient_name_data_textView"
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"/>
+
+            </TableRow>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/ingredient_quantity_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="      Quantity"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="30dp"
+                android:layout_height="wrap_content" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/ingredient_quantity_number_data_textView"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/ingredient_quantity_measurement_data_textView"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content" />
+
+            </TableRow>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/ingredient_expiration_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="      Expiration"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="30dp"
+                android:layout_height="wrap_content" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/ingredient_expiration_data_textView"
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"/>
+            </TableRow>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/special_notes_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="      Special Notes"
+                android:textSize="18sp" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/ingredient_special_notes_data_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignEnd="@+id/ingredient_photo"
+        android:layout_alignLeft="@+id/ingredient_photo"
+        android:layout_alignRight="@+id/ingredient_photo"
+        android:layout_alignStart="@+id/ingredient_photo"
+        android:layout_below="@+id/tableLayout"/>
+
+</RelativeLayout>
