@@ -11,15 +11,13 @@ import android.widget.Button;
 
 /**
  * Created by Luigi Ciuffardi on 10/1/2017.
- * Last updated by Luigi Ciuffardi on 12/27/2018.
+ * Last updated by Luigi Ciuffardi on 2/26/2019.
  */
 public class RecipesFragment extends Fragment implements View.OnClickListener {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -93,7 +91,6 @@ public class RecipesFragment extends Fragment implements View.OnClickListener {
     }
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(String title);
     }
 

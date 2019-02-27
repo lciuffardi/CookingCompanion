@@ -6,6 +6,7 @@ package com.example.lciuffardi.cookingcompanion;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 import java.util.Properties;
 import javax.mail.Message;
@@ -19,12 +20,13 @@ import android.os.Handler;
 
 /**
  * Created by Luigi Ciuffardi on 10/2/2017.
- * Last updated by Luigi Ciuffardi on 12/27/2018.
+ * Last updated by Luigi Ciuffardi on 2/26/2019.
  */
 public class EmailService extends IntentService {
-    public static final String EMAIL_SOURCE = "cookingcompanionuser@gmail.com";
-    public static final String PASSWORD = "nlkdxjocfriqyevj";
-    public static final String EMAIL_DESTINATION = "cookingcompaniondevteam@gmail.com";
+    private static final String TAG = EmailService.class.getName();
+    private static final String EMAIL_SOURCE = "cookingcompanionuser@gmail.com";
+    private static final String PASSWORD = "nlkdxjocfriqyevj";
+    private static final String EMAIL_DESTINATION = "cookingcompaniondevteam@gmail.com";
 
     private Session session;
     private String email;
@@ -108,8 +110,10 @@ public class EmailService extends IntentService {
             Transport.send(devTeamMessage);
             Transport.send(copyMessage);
             sent = true;
+            Log.d(TAG, "User's Message has successfully been sent to CookingCompanion DEV Team...");
 
         } catch (MessagingException e) {
+            Log.e(TAG, "Error Sending User's Email to CookingCompanion DEV Team...");
             e.printStackTrace();
         }
     }

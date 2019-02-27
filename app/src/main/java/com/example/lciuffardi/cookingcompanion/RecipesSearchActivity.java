@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,10 +25,11 @@ import java.util.Random;
 
 /**
  * Created by Luigi Ciuffardi on 10/1/2017.
- * Last updated by Luigi Ciuffardi on 12/27/2018.
+ * Last updated by Luigi Ciuffardi on 2/26/2019.
  */
 
 public class RecipesSearchActivity extends AppCompatActivity implements View.OnClickListener{
+    private static final String TAG = RecipesSearchActivity.class.getName();
     private boolean inCategory = false;
     private ListView listView;
     private Map<String, String> recipeMap = new HashMap<>();
@@ -112,9 +114,12 @@ public class RecipesSearchActivity extends AppCompatActivity implements View.OnC
         JSONObject recipesJSON = null;
         JSONArray listArr = null;
         try {
+            Log.d(TAG, "Loading " + selection + " Recipes...");
             recipesJSON = new JSONObject(JSONLoader.loadRecipesJSON(getApplicationContext()));
             listArr = recipesJSON.optJSONArray(selection);
+            Log.d(TAG, selection + " Recipes have been loaded...");
         } catch(JSONException e){
+            Log.d(TAG, "Error loading " + selection + " Recipes...");
             e.printStackTrace();
         }
         return listArr;
@@ -177,6 +182,7 @@ public class RecipesSearchActivity extends AppCompatActivity implements View.OnC
      * @param recipeObj
      */
     private void openRecipe(Object recipeObj){
+        Log.d(TAG, "Opening Recipe: " + recipeObj.toString());
         String url = recipeMap.get(recipeObj);
 
         Intent intent = new Intent(

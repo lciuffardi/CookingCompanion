@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,10 +34,11 @@ import java.util.Random;
 
 /**
  * Created by Luigi Ciuffardi on 9/30/2017.
- * Last updated by Luigi Ciuffardi on 12/27/2018.
+ * Last updated by Luigi Ciuffardi on 2/26/2019.
  */
 public class HomeFragment extends Fragment implements View.OnClickListener {
-    // TODO: Rename parameter arguments, choose names that match
+    private static final String TAG = HomeFragment.class.getName();
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -45,7 +47,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private String url = null;
     private int randomRecipe = 1;
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -85,13 +86,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             if(!preferences.getString("Today", "").isEmpty()){
                 Date savedDate = ((Date) df.parse(preferences.getString("Today", "")));
                 today = df.parse(df.format(today));
+                Log.d(TAG,"Comparing saved date with today's date...");
+                Log.d(TAG, "Saved Date: " + savedDate);
+                Log.d(TAG, "Today's Date: " + today);
                 if(savedDate.before(today)){
+                    Log.d(TAG,"Generating new Recipe of the Day...");
                     editor.putString("Today", df.format(today));
                     editor.putInt("RandomSelection", r.nextInt(6-1) + 1);
                     editor.putInt("RandomRecipe", r.nextInt(999-1)+1);
                     editor.commit();
                 }
             }else{
+                Log.d(TAG,"Generating new Recipe of the Day...");
                 editor.putString("Today", df.format(today));
                 editor.putInt("RandomSelection", r.nextInt(6-1) + 1);
                 editor.putInt("RandomRecipe", r.nextInt(999-1)+1);
@@ -99,6 +105,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
 
         }catch(ParseException ex){
+            Log.e(TAG, "Unable to generate Recipe of the Day...");
             ex.printStackTrace();
         }
         preferences.getInt("RandomRecipe", 0);
@@ -188,7 +195,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(String title);
     }
 
@@ -254,6 +260,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             listObj = listArr.getJSONObject(randomRecipe % listArr.length());
             name = listObj.getString("name");
             url = listObj.getString("url");
+            Log.d(TAG, "Type of Recipe: " + selection);
+            Log.d(TAG, "Recipe of the Day: " + name);
+
             int resID = getResources().getIdentifier(listObj.getString("img"), "mipmap", getActivity().getPackageName());
             recipeImage.setImageResource(resID);
 
